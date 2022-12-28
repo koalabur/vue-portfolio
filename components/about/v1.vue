@@ -7,9 +7,9 @@
         <nuxt-img
           provider="cloudinary"
           class="about__title-icon"
-          src="/about/mouse-icon_ycm62k.png"
+          src="/about/mouse-icon_b64vik.svg"
           alt="Mouse"
-          width="18"
+          width="14"
           height="18"
           loading="lazy"
           decoding="async"
@@ -17,9 +17,9 @@
         <nuxt-img
           provider="cloudinary"
           class="about__title-icon about__title-icon--controller"
-          src="/about/controller-icon_anmj8o.png"
+          src="/about/controller-icon_eoqnsz.svg"
           alt="Controller"
-          width="27"
+          width="18"
           height="18"
           loading="lazy"
           decoding="async"
@@ -66,9 +66,9 @@
       <div>
         <nuxt-img
           provider="cloudinary"
-          src="/about/bug-icon_sx93jk.png"
+          src="/about/bug-icon_ailpmh.svg"
           alt="Bug"
-          width="20"
+          width="18"
           height="18"
           class="about__title-icon"
           loading="lazy"
@@ -76,9 +76,9 @@
         />
         <nuxt-img
           provider="cloudinary"
-          src="/about/web-icon_vttje2.png"
-          alt="Web"
-          width="34"
+          src="/about/github-icon_w1s0hb.svg"
+          alt="Github"
+          width="18"
           height="18"
           class="about__title-icon about__title-icon--controller"
           loading="lazy"
