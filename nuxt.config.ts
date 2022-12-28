@@ -8,6 +8,7 @@ export default defineNuxtConfig({
       title: "Cameron R Design",
       meta: [{ name: "description", content: "Vue/ Nuxt.js portfolio" }],
       link: [
+        { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
         {
           rel: "preconnect",
           href: "https://fonts.googleapis.com",

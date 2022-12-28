@@ -1,6 +1,8 @@
 # Notes From Dev
 
+I HAVE NO IDEA WHY MY FIREBASE API IS WORKING. IT'S COMMENTED OUT AND SHOULD NOT BE WORKING. I DON'T WANT TO TOUCH IT!
 
+Now... you may be thinking to yourself, "If it's commented then it may be pulling in cached data." WRONG! I've updated my cloud firestore and the changes are reflected in REALTIME.
 
 # Nuxt 3 Minimal Starter
 
