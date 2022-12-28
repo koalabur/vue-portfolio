@@ -1,0 +1,90 @@
+<template>
+  <aside class="externalLinks">
+    <p class="externalLinks__text">other <br />portfolios</p>
+    <a
+      v-for="item in links"
+      :class="'externalLinks__link externalLinks__link--' + item.icon.alt"
+      :href="item.url"
+      :key="item.id"
+      target="_blank"
+      rel="noreferrer"
+    >
+      <img
+        class="externalLinks__link-icon"
+        :src="item.icon.src"
+        :alt="item.icon.alt"
+        width="25"
+        height="25"
+      />
+    </a>
+  </aside>
+</template>
+<script lang="ts" setup>
+const links = ref([
+  {
+    id: 1,
+    url: "https://react.cameronrdesign.com/",
+    icon: {
+      src: "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pjxzdmcgcm9sZT0iaW1nIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlLz48cGF0aCBkPSJNMTIgOS44NjFBMi4xMzkgMi4xMzkgMCAxIDAgMTIgMTQuMTM5IDIuMTM5IDIuMTM5IDAgMSAwIDEyIDkuODYxek02LjAwOCAxNi4yNTVsLS40NzItLjEyQzIuMDE4IDE1LjI0NiAwIDEzLjczNyAwIDExLjk5NnMyLjAxOC0zLjI1IDUuNTM2LTQuMTM5bC40NzItLjExOS4xMzMuNDY4YTIzLjUzIDIzLjUzIDAgMCAwIDEuMzYzIDMuNTc4bC4xMDEuMjEzLS4xMDEuMjEzYTIzLjMwNyAyMy4zMDcgMCAwIDAtMS4zNjMgMy41NzhsLS4xMzMuNDY3ek01LjMxNyA4Ljk1Yy0yLjY3NC43NTEtNC4zMTUgMS45LTQuMzE1IDMuMDQ2IDAgMS4xNDUgMS42NDEgMi4yOTQgNC4zMTUgMy4wNDZhMjQuOTUgMjQuOTUgMCAwIDEgMS4xODItMy4wNDZBMjQuNzUyIDI0Ljc1MiAwIDAgMSA1LjMxNyA4Ljk1ek0xNy45OTIgMTYuMjU1bC0uMTMzLS40NjlhMjMuMzU3IDIzLjM1NyAwIDAgMC0xLjM2NC0zLjU3N2wtLjEwMS0uMjEzLjEwMS0uMjEzYTIzLjQyIDIzLjQyIDAgMCAwIDEuMzY0LTMuNTc4bC4xMzMtLjQ2OC40NzMuMTE5YzMuNTE3Ljg4OSA1LjUzNSAyLjM5OCA1LjUzNSA0LjE0cy0yLjAxOCAzLjI1LTUuNTM1IDQuMTM5bC0uNDczLjEyem0tLjQ5MS00LjI1OWMuNDggMS4wMzkuODc3IDIuMDYgMS4xODIgMy4wNDYgMi42NzUtLjc1MiA0LjMxNS0xLjkwMSA0LjMxNS0zLjA0NiAwLTEuMTQ2LTEuNjQxLTIuMjk0LTQuMzE1LTMuMDQ2YTI0Ljc4OCAyNC43ODggMCAwIDEtMS4xODIgMy4wNDZ6TTUuMzEgOC45NDVsLS4xMzMtLjQ2N0M0LjE4OCA0Ljk5MiA0LjQ4OCAyLjQ5NCA2IDEuNjIyYzEuNDgzLS44NTYgMy44NjQuMTU1IDYuMzU5IDIuNzE2bC4zNC4zNDktLjM0LjM0OWEyMy41NTIgMjMuNTUyIDAgMCAwLTIuNDIyIDIuOTY3bC0uMTM1LjE5My0uMjM1LjAyYTIzLjY1NyAyMy42NTcgMCAwIDAtMy43ODUuNjFsLS40NzIuMTE5em0xLjg5Ni02LjYzYy0uMjY4IDAtLjUwNS4wNTgtLjcwNS4xNzMtLjk5NC41NzMtMS4xNyAyLjU2NS0uNDg1IDUuMjUzYTI1LjEyMiAyNS4xMjIgMCAwIDEgMy4yMzMtLjUwMSAyNC44NDcgMjQuODQ3IDAgMCAxIDIuMDUyLTIuNTQ0Yy0xLjU2LTEuNTE5LTMuMDM3LTIuMzgxLTQuMDk1LTIuMzgxek0xNi43OTUgMjIuNjc3Yy0uMDAxIDAtLjAwMSAwIDAgMC0xLjQyNSAwLTMuMjU1LTEuMDczLTUuMTU0LTMuMDIzbC0uMzQtLjM0OS4zNC0uMzQ5YTIzLjUzIDIzLjUzIDAgMCAwIDIuNDIxLTIuOTY4bC4xMzUtLjE5My4yMzQtLjAyYTIzLjYzIDIzLjYzIDAgMCAwIDMuNzg3LS42MDlsLjQ3Mi0uMTE5LjEzNC40NjhjLjk4NyAzLjQ4NC42ODggNS45ODMtLjgyNCA2Ljg1NGEyLjM4IDIuMzggMCAwIDEtMS4yMDUuMzA4em0tNC4wOTYtMy4zODFjMS41NiAxLjUxOSAzLjAzNyAyLjM4MSA0LjA5NSAyLjM4MWguMDAxYy4yNjcgMCAuNTA1LS4wNTguNzA0LS4xNzMuOTk0LS41NzMgMS4xNzEtMi41NjYuNDg1LTUuMjU0YTI1LjAyIDI1LjAyIDAgMCAxLTMuMjM0LjUwMSAyNC42NzQgMjQuNjc0IDAgMCAxLTIuMDUxIDIuNTQ1ek0xOC42OSA4Ljk0NWwtLjQ3Mi0uMTE5YTIzLjQ3OSAyMy40NzkgMCAwIDAtMy43ODctLjYxbC0uMjM0LS4wMi0uMTM1LS4xOTNhMjMuNDE0IDIzLjQxNCAwIDAgMC0yLjQyMS0yLjk2N2wtLjM0LS4zNDkuMzQtLjM0OUMxNC4xMzUgMS43NzggMTYuNTE1Ljc2NyAxOCAxLjYyMmMxLjUxMi44NzIgMS44MTIgMy4zNy44MjQgNi44NTVsLS4xMzQuNDY4ek0xNC43NSA3LjI0YzEuMTQyLjEwNCAyLjIyNy4yNzMgMy4yMzQuNTAxLjY4Ni0yLjY4OC41MDktNC42OC0uNDg1LTUuMjUzLS45ODgtLjU3MS0yLjg0NS4zMDQtNC44IDIuMjA4QTI0Ljg0OSAyNC44NDkgMCAwIDEgMTQuNzUgNy4yNHpNNy4yMDYgMjIuNjc3QTIuMzggMi4zOCAwIDAgMSA2IDIyLjM2OWMtMS41MTItLjg3MS0xLjgxMi0zLjM2OS0uODIzLTYuODU0bC4xMzItLjQ2OC40NzIuMTE5YzEuMTU1LjI5MSAyLjQyOS40OTYgMy43ODUuNjA5bC4yMzUuMDIuMTM0LjE5M2EyMy41OTYgMjMuNTk2IDAgMCAwIDIuNDIyIDIuOTY4bC4zNC4zNDktLjM0LjM0OWMtMS44OTggMS45NS0zLjcyOCAzLjAyMy01LjE1MSAzLjAyM3ptLTEuMTktNi40MjdjLS42ODYgMi42ODgtLjUwOSA0LjY4MS40ODUgNS4yNTQuOTg3LjU2MyAyLjg0My0uMzA1IDQuOC0yLjIwOGEyNC45OTggMjQuOTk4IDAgMCAxLTIuMDUyLTIuNTQ1IDI0Ljk3NiAyNC45NzYgMCAwIDEtMy4yMzMtLjUwMXpNMTIgMTYuODc4Yy0uODIzIDAtMS42NjktLjAzNi0yLjUxNi0uMTA2bC0uMjM1LS4wMi0uMTM1LS4xOTNhMzAuMzg4IDMwLjM4OCAwIDAgMS0xLjM1LTIuMTIyIDMwLjM1NCAzMC4zNTQgMCAwIDEtMS4xNjYtMi4yMjhsLS4xLS4yMTMuMS0uMjEzYTMwLjMgMzAuMyAwIDAgMSAxLjE2Ni0yLjIyOGMuNDE0LS43MTYuODY5LTEuNDMgMS4zNS0yLjEyMmwuMTM1LS4xOTMuMjM1LS4wMmEyOS43ODUgMjkuNzg1IDAgMCAxIDUuMDMzIDBsLjIzNC4wMi4xMzQuMTkzYTMwLjAwNiAzMC4wMDYgMCAwIDEgMi41MTcgNC4zNWwuMTAxLjIxMy0uMTAxLjIxM2EyOS42IDI5LjYgMCAwIDEtMi41MTcgNC4zNWwtLjEzNC4xOTMtLjIzNC4wMmMtLjg0Ny4wNy0xLjY5NC4xMDYtMi41MTcuMTA2em0tMi4xOTctMS4wODRjMS40OC4xMTEgMi45MTQuMTExIDQuMzk1IDBhMjkuMDA2IDI5LjAwNiAwIDAgMCAyLjE5Ni0zLjc5OCAyOC41ODUgMjguNTg1IDAgMCAwLTIuMTk3LTMuNzk4IDI5LjAzMSAyOS4wMzEgMCAwIDAtNC4zOTQgMCAyOC40NzcgMjguNDc3IDAgMCAwLTIuMTk3IDMuNzk4IDI5LjExNCAyOS4xMTQgMCAwIDAgMi4xOTcgMy43OTh6Ii8+PC9zdmc+",
+      alt: "react",
+    },
+  },
+  {
+    id: 2,
+    url: "https://www.cameronrdesign.com/",
+    icon: {
+      src: "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDU2LjY5MyA1Ni42OTMiIGhlaWdodD0iNTYuNjkzcHgiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1Ni42OTMgNTYuNjkzIiB3aWR0aD0iNTYuNjkzcHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik0zLjU5LDI5LjM1NWMwLDkuNzQyLDUuNjYzLDE4LjE3LDEzLjg3OCwyMi4xNTZMNS43MjMsMTkuMzMyQzQuMzU1LDIyLjM5NiwzLjU5LDI1Ljc4MywzLjU5LDI5LjM1NXogTTQ0LjgzNiwyOC4xMTEgIGMwLTMuMDQzLTEuMDk2LTUuMTUyLTIuMDMxLTYuNzkxYy0xLjI0OC0yLjAzLTIuNDE2LTMuNzQ1LTIuNDE2LTUuNzc2YzAtMi4yNjQsMS43MTEtNC4zNjksNC4xMzUtNC4zNjkgIGMwLjEwNSwwLDAuMjExLDAuMDE0LDAuMzE2LDAuMDIxQzQwLjQ2MSw3LjE4MywzNC42MjUsNC43MywyOC4yMTUsNC43M2MtOC42MDUsMC0xNi4xNzIsNC40MTYtMjAuNTczLDExLjEgIGMwLjU3OSwwLjAxOCwxLjEyMSwwLjAzMSwxLjU4MywwLjAzMWMyLjU3NywwLDYuNTYzLTAuMzE2LDYuNTYzLTAuMzE2YzEuMzI0LTAuMDc0LDEuNDgxLDEuODcxLDAuMTU0LDIuMDMxICBjMCwwLTEuMzMyLDAuMTU0LTIuODE3LDAuMjM0bDguOTY4LDI2LjY2OGw1LjM4OS0xNi4xNThsLTMuODM4LTEwLjUxYy0xLjMyNi0wLjA4LTIuNTgyLTAuMjM0LTIuNTgyLTAuMjM0ICBjLTEuMzI4LTAuMDgtMS4xNy0yLjEwNSwwLjE1OC0yLjAzMWMwLDAsNC4wNjQsMC4zMTYsNi40ODIsMC4zMTZjMi41NzQsMCw2LjU2Ni0wLjMxNiw2LjU2Ni0wLjMxNiAgYzEuMzIyLTAuMDc0LDEuNDgsMS44NzEsMC4xNTIsMi4wMzFjMCwwLTEuMzMsMC4xNTQtMi44MTYsMC4yMzRsOC45LDI2LjQ2NWwyLjQ1Ny04LjIwM0M0NC4yMDksMzIuODcxLDQ0LjgzNiwzMC4yMjEsNDQuODM2LDI4LjExMSAgeiBNMjguNjQ2LDMxLjUxbC03LjM4OSwyMS40NjljMi4yMDUsMC42NDgsNC41MzUsMSw2Ljk1NywxYzIuODY1LDAsNS42MTctMC40OTYsOC4xNzYtMS4zOThjLTAuMDY2LTAuMTA1LTAuMTI3LTAuMjE1LTAuMTc2LTAuMzM2ICBMMjguNjQ2LDMxLjUxeiBNNDkuODE4LDE3LjUzOWMwLjEwOSwwLjc4NywwLjE3LDEuNjI3LDAuMTcsMi41MzVjMCwyLjQ5Ny0wLjQ2OSw1LjMwNS0xLjg3NSw4LjgxOWwtNy41MiwyMS43NDIgIGM3LjMxOC00LjI2NiwxMi4yNC0xMi4xOTUsMTIuMjQtMjEuMjc5QzUyLjgzNCwyNS4wNzIsNTEuNzQsMjEuMDQ5LDQ5LjgxOCwxNy41Mzl6Ii8+PC9zdmc+",
+      alt: "wordpress",
+    },
+  },
+]);
+</script>
+<style lang="sass" scoped>
+.externalLinks
+    display: flex
+    flex-direction: column
+    position: fixed
+    left: 0
+    bottom: 0
+    z-index: 11
+
+    &__link
+        background: rgba(255, 255, 255, 0.7)
+        margin-bottom: 10px
+        padding-left: #{fluid(20px, 10px)}
+        border-right: 6px solid transparent
+        transition: 0.25s ease-in-out
+        transform: translateX(-10px)
+        max-width: 53px
+        @include mobile-break
+          padding-top: 5px
+          padding-bottom: 5px
+
+        &:hover
+            transform: translateX(0px)
+
+        &--react
+            border-color: $react-blue
+
+        &--wordpress
+            border-color: #0073aa
+
+        &-icon
+            fill: #fff
+            border-right: 6px solid transparent
+            width: auto
+            height: #{fluid(25px, 35px)}
+
+
+    &__text
+        font-family: $main-font
+        color: $font-color
+        margin-bottom: 10px
+        // font-size: 1rem
+        font-size: #{fluid(12px, 16px)}
+        letter-spacing: 1px
+        padding-left: 2px
+        cursor: not-allowed
+        -webkit-text-stroke-width: .1px
+        -webkit-text-stroke-color: black
+</style>
