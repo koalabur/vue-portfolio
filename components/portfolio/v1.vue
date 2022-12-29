@@ -61,35 +61,29 @@
   </section>
 </template>
 <script lang="ts" setup>
-// Imports
-import { collection, getDocs } from "firebase/firestore";
-// @ts-ignore
-import { db } from "/firebase.config.ts";
-
-// PORTFOLIO DATA
+// Init vars before everything else
 let portfolioData: any = ref();
-const dbCollectionPortfolio = "portfolio";
 
-const collectionRef = collection(db, dbCollectionPortfolio);
-const result = await getDocs(collectionRef);
-const mapResult = result.docs.map((doc) => ({ ...doc.data() }));
+async function initApi() {
+  // API data from firebase
+  const rawPortfolioData = await $fetch("/api/query?col=portfolio");
 
-// err handling
-if (mapResult.length !== 0) {
-  const cleanResult = ref(mapResult);
-  portfolioData = cleanResult;
-} else {
-  console.warn(
-    `There was a problem fetching the ${dbCollectionPortfolio.toUpperCase()} collection!`
-  );
+  // sort id descending order
+  // @ts-ignore
+  rawPortfolioData.sort(function (a: { id: number }, b: { id: number }) {
+    return a.id - b.id;
+  });
+
+  // Assign to ref.value
+  portfolioData.value = rawPortfolioData;
 }
 
-// sort id descending order
-portfolioData.value.sort(function (a: { id: number }, b: { id: number }) {
-  return a.id - b.id;
-});
+// Everything below this will wait until the api returns
+// can't do anything without data regardless
+// TODO: ERR HANDLING
+await initApi();
 
-// CHANGE SLIDE LOGIC
+// CAROUSEL
 // Current slide
 let currentSlide: any = ref(0);
 

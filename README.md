@@ -1,8 +1,12 @@
-# Notes From Dev
+# Letter From Tha Dev
 
-I HAVE NO IDEA WHY MY FIREBASE API IS WORKING. IT'S COMMENTED OUT AND SHOULD NOT BE WORKING. I DON'T WANT TO TOUCH IT!
+Nuxt made my life an absolute nightmare trying to configure.
 
-Now... you may be thinking to yourself, "If it's commented then it may be pulling in cached data." WRONG! I've updated my cloud firestore and the changes are reflected in REALTIME.
+## Resources for Cloud Firestore Configuration:
+
+Query: https://www.youtube.com/watch?v=eylH4KxDJJw
+Additional Info for SSR and Firebase: https://fireship.io/lessons/nuxt-3-firebase/
+ENV Vars: https://github.com/gladly-team/next-firebase-auth/discussions/95
 
 # Nuxt 3 Minimal Starter
 

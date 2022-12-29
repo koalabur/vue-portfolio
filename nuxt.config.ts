@@ -1,6 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  ssr: false,
   app: {
     head: {
       charset: "utf-8",
@@ -39,7 +38,7 @@ export default defineNuxtConfig({
   // Used to access env variables
   runtimeConfig: {
     // Private keys that are exposed to the server
-    FIREBASE_KEY: process.env.FIREBASE_KEY,
+
     // Public keys that are exposed to the client
     public: {},
   },

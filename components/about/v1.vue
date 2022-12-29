@@ -85,8 +85,8 @@
     <div class="about__skills">
       <p
         class="about__skills-item"
-        v-for="items in skillsData.items"
-        :key="items"
+        v-for="(items, index) of skillsData.items"
+        :key="index"
       >
         {{ items }}
       </p>
@@ -94,51 +94,38 @@
   </section>
 </template>
 <script lang="ts" setup>
-// Imports
-import { doc, getDoc, collection, getDocs } from "firebase/firestore";
-// @ts-ignore
-import { db } from "/firebase.config.ts";
-
-// SKILLS DATA
-let skillsData = ref();
-const dbCollectionSkills = "skills";
-
-const docRef = doc(db, dbCollectionSkills, "bhGO42yK5Voe2pvPilS0");
-const docSnap = await getDoc(docRef);
-
-// err handling
-if (docSnap.exists()) {
-  const firebaseSkillsData = ref(docSnap.data());
-  skillsData = firebaseSkillsData;
-} else {
-  // doc.data() will be undefined in this case
-  console.warn(
-    `There was a problem fetching the ${dbCollectionSkills.toUpperCase()} document!`
-  );
-}
-
-// ABOUT DATA
+// Init vars before everything else
 let aboutData: any = ref();
-const dbCollectionAbout = "about";
+let skillsData: any = ref();
 
-const collectionRef = collection(db, dbCollectionAbout);
-const result = await getDocs(collectionRef);
-const mapResult = result.docs.map((doc) => ({ ...doc.data() }));
+async function initApi() {
+  // About Data
+  const rawAboutData = await $fetch("/api/query?col=about");
 
-// err handling
-if (mapResult.length !== 0) {
-  const cleanResult = ref(mapResult);
-  aboutData = cleanResult;
-} else {
-  console.warn(
-    `There was a problem fetching the ${dbCollectionAbout.toUpperCase()} collection!`
+  // sort id descending order
+  // @ts-ignore
+  rawAboutData.sort(function (a: { id: number }, b: { id: number }) {
+    return a.id - b.id;
+  });
+
+  // Assign to ref.value
+  aboutData.value = rawAboutData;
+
+  // ************************* //
+  // Skills Data
+  const rawSkillsData = await $fetch("/api/query?col=skills");
+
+  // Filter to desired ID
+  // @ts-ignore
+  const filteredSkillsData = rawSkillsData.find(
+    (item: { id: string }) => item.id === "bhGO42yK5Voe2pvPilS0"
   );
+
+  skillsData.value = filteredSkillsData;
 }
 
-// sort id descending order
-aboutData.value.sort(function (a: { id: number }, b: { id: number }) {
-  return a.id - b.id;
-});
+// TODO: ERR HANDLING
+await initApi();
 </script>
 <style lang="sass" scoped>
 .about

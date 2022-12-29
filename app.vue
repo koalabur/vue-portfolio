@@ -9,24 +9,13 @@
   <FooterSection />
 </template>
 
-<script>
+<script setup>
 import NavBar from "./components/nav/v1";
 import IntroSection from "./components/intro/v1";
 import AboutSection from "./components/about/v1";
 import PortfolioSection from "./components/portfolio/v1";
 import SidebarSection from "./components/sidebar/v1";
 import FooterSection from "./components/footer/v1";
-
-export default {
-  components: {
-    NavBar,
-    IntroSection,
-    AboutSection,
-    PortfolioSection,
-    SidebarSection,
-    FooterSection,
-  },
-};
 </script>
 
 <style lang="sass">
