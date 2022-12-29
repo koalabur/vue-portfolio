@@ -4,10 +4,11 @@
       <nuxt-img
         provider="cloudinary"
         class="intro__fg-img"
-        src="/intro/koala-hero_eo3buf.png"
-        width="423"
-        height="385"
+        src="/intro/koala-hero_gaqznq.png"
+        width="846"
+        height="775"
         alt="Koala Intro"
+        preload
       />
       <h1 class="intro__fg-title">
         i&apos;m just a web guy doing web guy things
