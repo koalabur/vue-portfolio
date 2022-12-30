@@ -342,7 +342,7 @@ await initApi();
         &-text
             font-family: $main-font
             // font-size: 2.2rem
-            font-size: #{fluid(26px, 36px)}
+            font-size: #{fluid(30px, 36px)}
             font-weight: 600
             background: -webkit-linear-gradient(left, #3700ff, #b629f2 45%)
             background-clip: text
@@ -354,7 +354,7 @@ await initApi();
         font-family: $main-font
         color: #d0d5f2
         // font-size: 1.3rem
-        font-size: #{fluid(16px, 21px)}
+        font-size: #{fluid(18px, 21px)}
         font-weight: 400
         // margin-bottom: 3rem
         margin-bottom: #{fluid(32px, 48px)}

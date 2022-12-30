@@ -16,11 +16,12 @@
       <a href="#about" class="intro__fg-svg">
         <svg
           xmlns="http://www.w3.org/2000/svg"
+          title="Go to about section"
           aria-hidden="true"
           focusable="false"
           data-prefix="fas"
           data-icon="mouse"
-          role="img"
+          role="button"
           viewBox="0 0 384 512"
         >
           <path
@@ -36,6 +37,7 @@
         viewBox="0 0 261.76 226.69"
         xmlns="http://www.w3.org/2000/svg"
         class="intro__bg-svg"
+        role="image"
         width="600"
         height="600"
       >
