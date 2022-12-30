@@ -4,8 +4,8 @@ Nuxt made my life an absolute nightmare trying to configure.
 
 ## Resources for Cloud Firestore Configuration:
 
-Query: https://www.youtube.com/watch?v=eylH4KxDJJw
-Additional Info for SSR and Firebase: https://fireship.io/lessons/nuxt-3-firebase/
+Query: https://www.youtube.com/watch?v=eylH4KxDJJw \
+Additional Info for SSR and Firebase: https://fireship.io/lessons/nuxt-3-firebase/ \
 ENV Vars: https://github.com/gladly-team/next-firebase-auth/discussions/95
 
 # Nuxt 3 Minimal Starter
