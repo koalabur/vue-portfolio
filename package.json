@@ -20,7 +20,9 @@
     "vite-plugin-eslint": "^1.8.1"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.4.6",
     "firebase": "^9.15.0",
-    "firebase-admin": "^11.4.1"
+    "firebase-admin": "^11.4.1",
+    "pinia": "^2.0.28"
   }
 }
