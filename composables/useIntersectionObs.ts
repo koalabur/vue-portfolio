@@ -10,7 +10,6 @@ export default function useInterObs(
       entries.forEach((entry) => {
         // Timeout to prevent flickering when state updates
         setTimeout(() => {
-          // @ts-ignore
           updateGlobalState(entry.isIntersecting ? elementRef.value.id : "");
         }, 350);
       });
@@ -28,3 +27,21 @@ export default function useInterObs(
   // @ts-ignore
   observer.observe(elementRef.value);
 }
+
+// Usage
+
+//* Import pinia store (global state)
+// import { useCoreStore } from "@/stores/coreStore";
+
+// Assign const to global state
+// const coreStore = useCoreStore();
+
+// Ref the element
+// ref={example} on element
+// const example = ref(null);
+
+// Intersection Observer needs to be init onMounted
+//! Cannot onMounted in composable. Causes errors.
+// onMounted(() => {
+//   useIntersectionObs(portfolio, coreStore.setSection, 0.5);
+// });

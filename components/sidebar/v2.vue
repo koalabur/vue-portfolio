@@ -144,7 +144,7 @@ const sidebarAnim = computed(() => {
       padding: 3px
       transition: .25s ease-in-out
       border-radius: 10px
-      animation: pulse 15s alternate infinite
+      animation: pulse 10s alternate infinite
 
       @keyframes pulse
         0%
@@ -157,8 +157,8 @@ const sidebarAnim = computed(() => {
           border: 1px solid rgba(255,255,255,1)
 
       &:hover
-        transform: scale(1.1)
-        box-shadow: 0px 0px 20px rgba(0,0,0,.4)
+        box-shadow: 0px 0px 20px rgba(255,255,255,.4)
+        background: $purple
 
     &__title
       color: $purple

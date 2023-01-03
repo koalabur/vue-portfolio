@@ -96,7 +96,6 @@
 <script lang="ts" setup>
 //* Import pinia store (global state)
 import { useCoreStore } from "@/stores/coreStore";
-import useInterObs from "~~/composables/useIntersectionObs";
 
 // Init vars before everything else
 let aboutData: any = ref();
@@ -108,7 +107,7 @@ const about = ref(null);
 const coreStore = useCoreStore();
 
 onMounted(() => {
-  useInterObs(about, coreStore.setSection, 0.1);
+  useIntersectionObs(about, coreStore.setSection, 0.1);
 });
 
 async function initApi() {
