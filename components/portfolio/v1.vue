@@ -1,5 +1,5 @@
 <template>
-  <section id="portfolio" class="portfolio">
+  <section id="portfolio" class="portfolio" ref="portfolio">
     <h1 class="portfolio__title">&lt portfolio /&gt</h1>
     <p class="portfolio__index">
       {{ currentSlide + 1 }} / {{ portfolioData.length }}
@@ -61,8 +61,22 @@
   </section>
 </template>
 <script lang="ts" setup>
+//* Import pinia store (global state)
+import { useCoreStore } from "@/stores/coreStore";
+import useInterObs from "~~/composables/useIntersectionObs";
+
 // Init vars before everything else
 let portfolioData: any = ref();
+
+// Ref the element
+const portfolio = ref(null);
+
+// Assign const to global state
+const coreStore = useCoreStore();
+
+onMounted(() => {
+  useInterObs(portfolio, coreStore.setSection, 0.5);
+});
 
 async function initApi() {
   // API data from firebase
@@ -106,146 +120,137 @@ function prevSlide() {
 </script>
 <style lang="sass" scoped>
 .portfolio
-    max-width: 1400px
+  max-width: 1400px
+  margin-left: auto
+  margin-right: auto
+  @include edge-padding
+  padding-top: 5rem
+  padding-bottom: 10rem
+
+  &__index
+    font-family: $main-font
+    text-align: center
+    color: $font-color
+    // font-size: 2rem
+    font-size: #{fluid(26px, 32px)}
+    font-weight: 600
+    margin-bottom: 2rem
+
+  &__row
+    display: flex
+    align-items: center
+    justify-content: center
+    position: relative
+    max-width: 820px
     margin-left: auto
     margin-right: auto
-    margin-bottom: 10rem
-    @include edge-padding
 
-    &__index
+    &-arrow
+      background: transparent
+      border: none
+      width: calc(2rem + 1vw)
+      height: calc(2rem + 1vw)
+      fill: rgba(208, 213, 242, 0.8)
+      transition: 0.25s ease-in-out
+      cursor: pointer
+      border-radius: 50%
+      border: 1px solid $faded-purple
+      background: $faded-purple
+      position: absolute
+      z-index: 1
+
+      &:hover
+        fill: $font-color
+      &--left
+        left: -60px
+
+        @media (max-width: 992px)
+          left: 0
+
+      &--right
+        right: -60px
+
+        @media (max-width: 992px)
+          right: 0
+
+    &-carousel
+      display: grid
+      grid-template-columns: 1fr
+      grid-template-rows: 1fr
+      justify-items: center
+      position: relative
+      max-width: 800px
+      padding: 10px
+      transition: 0.25s ease-in-out
+      border-bottom-left-radius: 12px
+      border-bottom-right-radius: 12px
+      background: transparent
+      box-shadow: 0px 0px 20px 7px $font-color
+      background: $faded-purple
+
+      @media (max-width: 768px)
+        box-shadow: 0px 0px 6px 2px $font-color
+
+      &:hover
+        transform: translateY(-10px)
+
+    &-item
+      opacity: 0
+      transition: 0.25s ease-in-out
+      grid-area: 1 / 1 / 2 / 2
+      transform: translateY(-20px)
+      z-index: -1
+
+      &--active
+        transform: translateY(0px)
+        opacity: 1
+        z-index: 1
+
+      &-img
+        margin-bottom: 1rem
+
+      &-title
         font-family: $main-font
-        text-align: center
         color: $font-color
-        // font-size: 2rem
-        font-size: #{fluid(26px, 32px)}
-        font-weight: 600
-        margin-bottom: 2rem
+        margin-bottom: 1rem
+        // font-size: 2.5rem
+        font-size: #{fluid(32px, 40px)}
 
-
-    &__row
-        display: flex
-        align-items: center
-        justify-content: center
-        position: relative
-        max-width: 820px
-        margin-left: auto
-        margin-right: auto
-
-        &-arrow
-            background: transparent
-            border: none
-            width: calc(2rem + 1vw)
-            height: calc(2rem + 1vw)
-            fill: rgba(208, 213, 242, .8)
-            transition: 0.25s ease-in-out
-            cursor: pointer
-            border-radius: 50%
-            border: 1px solid $faded-purple
-            background: $faded-purple
-            position: absolute
-            z-index: 1
-
-            &:hover
-                fill: $font-color
-
-            &--left
-                left: -60px
-
-                @media (max-width: 992px)
-                    left: 0
-
-            &--right
-                right: -60px
-
-                @media (max-width: 992px)
-                    right: 0
-
-
-        &-carousel
-            display: grid
-            grid-template-columns: 1fr
-            grid-template-rows: 1fr
-            justify-items: center
-            position: relative
-            max-width: 800px
-            padding: 10px
-            transition: 0.25s ease-in-out
-            border-bottom-left-radius: 12px
-            border-bottom-right-radius: 12px
-            background: transparent
-            box-shadow: 0px 0px 20px 7px $font-color
-            background: $faded-purple
-
-            @media (max-width: 768px)
-                box-shadow: 0px 0px 6px 2px $font-color
-
-            &:hover
-                transform: translateY(-10px)
-
-
-        &-item
-            opacity: 0
-            transition: 0.25s ease-in-out
-            grid-area: 1 / 1 / 2 / 2
-            transform: translateY(-20px)
-            z-index: -1
-
-            &--active
-                transform: translateY(0px)
-                opacity: 1
-                z-index: 1
-
-
-            &-img
-                margin-bottom: 1rem
-
-
-            &-title
-                font-family: $main-font
-                color: $font-color
-                margin-bottom: 1rem
-                // font-size: 2.5rem
-                font-size: #{fluid(32px, 40px)}
-
-
-            &-tools
-                font-family: $main-font
-                // font-size: 1.3rem
-                font-size: #{fluid(16px, 22px)}
-                font-weight: 600
-                margin-bottom: 1rem
-
-                &-inner
-                    border-radius: 12px
-                    background: $font-color
-                    color: $faded-purple
-                    width: auto
-                    padding: 3px 10px
-
-
-        &-link
-            outline: 5px solid transparent
-            transition: 0.25s ease-in-out
-            height: 100%
-
-            img
-                vertical-align: bottom
-
-
-            &:hover,
-            &:focus
-                outline-color: #b629f2
-
-
-    &__title
+      &-tools
         font-family: $main-font
-        // font-size: 2.2rem
-        font-size: #{fluid(26px, 38px)}
+        // font-size: 1.3rem
+        font-size: #{fluid(16px, 22px)}
         font-weight: 600
-        background: -webkit-linear-gradient(left, #3700ff 0%, #b629f2 45%)
-        background-clip: text
-        -webkit-background-clip: text
-        -webkit-text-fill-color: transparent
-        margin-bottom: 2.5rem
-        text-align: center
+        margin-bottom: 1rem
+
+        &-inner
+          border-radius: 12px
+          background: $font-color
+          color: $faded-purple
+          width: auto
+          padding: 3px 10px
+
+    &-link
+      outline: 5px solid transparent
+      transition: 0.25s ease-in-out
+      height: 100%
+
+      img
+        vertical-align: bottom
+
+      &:hover,
+      &:focus
+        outline-color: #b629f2
+
+  &__title
+    font-family: $main-font
+    // font-size: 2.2rem
+    font-size: #{fluid(26px, 38px)}
+    font-weight: 600
+    background: -webkit-linear-gradient(left, #3700ff 0%, #b629f2 45%)
+    background-clip: text
+    -webkit-background-clip: text
+    -webkit-text-fill-color: transparent
+    margin-bottom: 2.5rem
+    text-align: center
 </style>

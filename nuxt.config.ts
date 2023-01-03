@@ -42,7 +42,7 @@ export default defineNuxtConfig({
     // Public keys that are exposed to the client
     public: {},
   },
-  modules: ["@nuxt/image-edge"],
+  modules: ["@nuxt/image-edge", "@pinia/nuxt"],
   // @ts-ignore
   image: {
     cloudinary: {
