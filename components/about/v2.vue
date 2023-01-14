@@ -158,11 +158,11 @@
 import { useCoreStore } from "@/stores/coreStore";
 
 //* Import and register gsap
-// import gsap from "gsap";
-// import ScrollTrigger from "gsap/dist/ScrollTrigger";
-// if (process.client) {
-//   gsap.registerPlugin(ScrollTrigger);
-// }
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+if (process.client) {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 // Init vars before everything else
 let aboutData: any = ref();
