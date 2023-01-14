@@ -60,6 +60,10 @@
   </aside>
 </template>
 <script lang="ts" setup>
+// Import pinia store (global state)
+import { useCoreStore } from "@/stores/coreStore";
+const coreStore = useCoreStore();
+
 const portfolios = ref([
   {
     id: 1,
@@ -100,10 +104,6 @@ const socials = ref([
 
 const sidebar = ref(true);
 
-onMounted(() => {
-  window.innerWidth < 768 ? (sidebar.value = false) : null;
-});
-
 function sidebarClose() {
   sidebar.value = !sidebar.value;
 }
@@ -113,6 +113,22 @@ const sidebarAnim = computed(() => {
     ? "transition: all 0.75s ease-in-out; opacity: 1; visibility: visible;"
     : "transition: all 0.15s ease-in-out; opacity: 0; visibility: hidden;";
 });
+
+// Need to use computed property to watch changes
+const isSiteReady = computed(() => {
+  return coreStore.getIsSiteReady;
+});
+
+// Watch for getIsSiteReady to change state AND mobile
+// hide sidebar after 1500ms
+watch(
+  () => coreStore.getIsSiteReady,
+  () => {
+    setTimeout(() => {
+      window.innerWidth < 1024 && isSiteReady ? (sidebar.value = false) : null;
+    }, 1500);
+  }
+);
 </script>
 <style lang="sass" scoped>
 .sidebar
