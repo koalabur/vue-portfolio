@@ -75,7 +75,7 @@ const portfolio = ref(null);
 const coreStore = useCoreStore();
 
 onMounted(() => {
-  useIntersectionObs(portfolio, coreStore.setSection, 0.5);
+  useIntersectionObs(portfolio, coreStore.setSection, 0.6);
 });
 
 async function initApi() {
