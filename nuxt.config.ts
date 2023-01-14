@@ -35,6 +35,9 @@ export default defineNuxtConfig({
       },
     },
   },
+  build: {
+    transpile: ["gsap"],
+  },
   // Used to access env variables
   runtimeConfig: {
     // Private keys that are exposed to the server
@@ -43,6 +46,7 @@ export default defineNuxtConfig({
     public: {},
   },
   modules: ["@nuxt/image-edge", "@pinia/nuxt"],
+
   // @ts-ignore
   image: {
     cloudinary: {
