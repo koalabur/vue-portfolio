@@ -31,6 +31,7 @@
             <!-- Yea... I just looped in a loop. I'll do it again. -->
             <span
               class="portfolio__row-item-tools-inner"
+              :class="tool === 'active' ? 'portfolio__row-item-tools-inner--active' : tool === 'coming soon' ? 'portfolio__row-item-tools-inner--comingsoon' : null"
               v-for="tool in item.tools"
               >{{ tool }}</span
             >
@@ -228,6 +229,18 @@ function prevSlide() {
           color: $faded-purple
           width: auto
           padding: 3px 10px
+          margin-right: #{fluid(5px, 10px)}
+
+          &:last-child
+            margin-right: 0
+
+          &--active
+            background: $active-bg
+            color: $active-fc
+
+          &--comingsoon
+            background: $comingsoon-bg
+            color: $comingsoon-fc
 
     &-link
       outline: 5px solid transparent

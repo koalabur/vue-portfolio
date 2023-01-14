@@ -1,4 +1,7 @@
 <template>
+  <Transition name="preloader">
+    <PreLoader v-if="!isSiteReady" />
+  </Transition>
   <NavBar />
   <main>
     <IntroSection />
@@ -10,12 +13,25 @@
 </template>
 
 <script setup>
+// Import pinia store (global state)
+import { useCoreStore } from "@/stores/coreStore";
+
+// Components
+import PreLoader from "./components/preLoader/v1";
 import NavBar from "./components/nav/v1";
 import IntroSection from "./components/intro/v1";
-import AboutSection from "./components/about/v1";
+import AboutSection from "./components/about/v2";
 import PortfolioSection from "./components/portfolio/v1";
 import SidebarSection from "./components/sidebar/v2";
 import FooterSection from "./components/footer/v1";
+
+// Assign const
+const coreStore = useCoreStore();
+
+// Need to use computed property to watch changes
+const isSiteReady = computed(() => {
+  return coreStore.getIsSiteReady;
+});
 </script>
 
 <style lang="sass">
@@ -42,17 +58,26 @@ a
 // SCROLLBAR
 // Whole bar
 ::-webkit-scrollbar
-    width: auto
+  width: auto
 
 
 // Track
 ::-webkit-scrollbar-track
-    background: $vue-blue
-    border-radius: 10px
+  background: $vue-blue
+  border-radius: 10px
 
 
 // Handle
 ::-webkit-scrollbar-thumb
-    background: $vue-green
-    border-radius: 10px
+  background: $vue-green
+  border-radius: 10px
+
+// Transition
+.preloader-enter-active, .preloader-leave-active
+  transition: .25s ease-in-out
+
+
+.preloader-enter-from, .preloader-leave-to
+  opacity: 0
+  transform: translateY(-100%)
 </style>
