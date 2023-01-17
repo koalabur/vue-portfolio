@@ -1,6 +1,14 @@
-# Letter From Tha Dev
-
-Nuxt made my life an absolute nightmare trying to configure.
+## What's Going On?
+- SSR: Server Side Rendering for SEO
+- Firebase - Cloud Firestore: Non SQL Database Hosting large majority of the content seen on site
+- Cloudinary: Hosting all of the jpegs and pngs, dynamic resizing, auto optimization
+- Base64 Encoded SVGs: Used to import svgs as img tags for better cross browser compatibility
+- API Ninja: API for random facts
+- \<Transition\>: Animations for mounting and unmounting components
+- GSAP: Scroll triggered animations
+- Pinia: Create and share global state between components
+- Intersction Observer API: Highlight nav links when section is in view \
+-- Usage: sending section ref to global state when it's in viewport then highlighting nav link of said section
 
 ## Resources for Cloud Firestore Configuration:
 
