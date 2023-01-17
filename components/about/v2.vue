@@ -38,8 +38,8 @@
                 :height="about.icon.height"
                 :class="
                   about.id !== 4
-                    ? 'about__highlights-col-img'
-                    : 'about__highlights-col-img about__highlights-col-img--rotate'
+                    ? 'about__col-highlights-item-img'
+                    : 'about__col-highlights-item-img about__col-highlights-item-img--rotate'
                 "
                 loading="lazy"
                 decoding="async"
@@ -225,7 +225,7 @@ onMounted(() => {
           start: "top top",
           end: "bottom",
           //@ts-ignore
-          pinSpacer: window.innerWidth < 1024 ? true : false,
+          pinSpacer: true,
         },
       }
     );
@@ -280,7 +280,7 @@ async function initApi() {
 // TODO: ERR HANDLING
 await initApi();
 </script>
-<style lang="sass">
+<style lang="sass" scoped>
 .about
   display: flex
   flex-direction: column
@@ -322,7 +322,7 @@ await initApi();
       &-dot
         background: $light-purple
         width: #{fluid(25px, 45px)}
-        height: #{fluid(25px, 42px)}
+        height: #{fluid(22px, 42px)}
         border-radius: 100%
         border: #{fluid(3px, 6px)} solid $purple
 
@@ -361,6 +361,7 @@ await initApi();
             animation: rotateAnimation 1.5s linear 0s infinite normal none
             transform-origin: 50% 55%
             transform-style: preserve-3D
+
         &-subtitle
           font-family: $main-font
           color: #d0d5f2
@@ -375,6 +376,7 @@ await initApi();
           font-size: #{fluid(35.2px, 40px)}
           font-weight: 200
           margin-bottom: 0.5rem
+
     &-row
       display: grid
       grid-template-columns: 1fr 0.95fr
@@ -418,6 +420,7 @@ await initApi();
             opacity: 1
             transform: scale(1) translate(0, 0)
             border-radius: 1px
+
         &:before
           position: absolute
           content: ""
@@ -472,6 +475,7 @@ await initApi();
 @keyframes rotateAnimation
   0%
     transform: rotate(0)
+
   100%
     transform: rotate(360deg)
 </style>
