@@ -15,7 +15,7 @@
     />
     <div :style="sidebarAnim">
       <!-- Loop through portfolios -->
-      <p class="sidebar__title">portfolios</p>
+      <p class="sidebar__title">other sites</p>
       <div class="sidebar__item" v-for="item in portfolios">
         <a
           :class="'sidebar__item-link sidebar__item-link--' + item.icon.alt"
@@ -114,21 +114,12 @@ const sidebarAnim = computed(() => {
     : "transition: all 0.15s ease-in-out; opacity: 0; visibility: hidden;";
 });
 
-// Need to use computed property to watch changes
-const isSiteReady = computed(() => {
-  return coreStore.getIsSiteReady;
-});
-
-// Watch for getIsSiteReady to change state AND mobile
 // hide sidebar after 1500ms
-watch(
-  () => coreStore.getIsSiteReady,
-  () => {
-    setTimeout(() => {
-      window.innerWidth < 1024 && isSiteReady ? (sidebar.value = false) : null;
-    }, 1500);
-  }
-);
+onMounted(() => {
+  setTimeout(() => {
+    window.innerWidth < 2000 ? (sidebar.value = false) : null;
+  }, 1500);
+});
 </script>
 <style lang="sass" scoped>
 .sidebar
@@ -186,6 +177,7 @@ watch(
       text-decoration: underline
       width: 100%
       text-align: center
+      padding: 0 3px
 
 
     &__item
