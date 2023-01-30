@@ -31,7 +31,13 @@
             <!-- Yea... I just looped in a loop. I'll do it again. -->
             <span
               class="portfolio__row-item-tools-inner"
-              :class="tool === 'active' ? 'portfolio__row-item-tools-inner--active' : tool === 'coming soon' ? 'portfolio__row-item-tools-inner--comingsoon' : null"
+              :class="
+                tool === 'active'
+                  ? 'portfolio__row-item-tools-inner--active'
+                  : tool === 'coming soon'
+                  ? 'portfolio__row-item-tools-inner--comingsoon'
+                  : null
+              "
               v-for="tool in item.tools"
               >{{ tool }}</span
             >
@@ -62,21 +68,40 @@
   </section>
 </template>
 <script lang="ts" setup>
-//* Import pinia store (global state)
+// Import pinia store (global state)
 import { useCoreStore } from "@/stores/coreStore";
+// vueuse.org
+import { useIntersectionObserver } from "@vueuse/core";
 
 // Init vars before everything else
-let portfolioData: any = ref();
+interface PortfolioData {
+  id: number;
+  img: {
+    alt: string;
+    src: string;
+  };
+  title: string;
+  tools: Array<string>;
+  url: string;
+}
+let portfolioData = ref<Array<PortfolioData>>([]);
 
 // Ref the element
-const portfolio = ref(null);
+const portfolio = ref<HTMLElement | null>(null);
 
 // Assign const to global state
 const coreStore = useCoreStore();
 
-onMounted(() => {
-  useIntersectionObs(portfolio, coreStore.setSection, 0.6);
-});
+// vueuse intersectionObserver
+useIntersectionObserver(
+  portfolio,
+  ([{ isIntersecting }]) => {
+    coreStore.setSection(isIntersecting ? portfolio.value?.id : "");
+  },
+  {
+    threshold: 0.6,
+  }
+);
 
 async function initApi() {
   // API data from firebase
@@ -89,6 +114,7 @@ async function initApi() {
   });
 
   // Assign to ref.value
+  // @ts-ignore
   portfolioData.value = rawPortfolioData;
 }
 
@@ -99,10 +125,10 @@ await initApi();
 
 // CAROUSEL
 // Current slide
-let currentSlide: any = ref(0);
+let currentSlide = ref<number>(0);
 
 // Length of imported data array
-const length = portfolioData.value.length;
+const length: number = portfolioData.value.length;
 
 function nextSlide() {
   // if current slide is equal to the length of the array then reset to 0

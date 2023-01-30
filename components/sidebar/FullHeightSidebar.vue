@@ -60,10 +60,6 @@
   </aside>
 </template>
 <script lang="ts" setup>
-// Import pinia store (global state)
-import { useCoreStore } from "@/stores/coreStore";
-const coreStore = useCoreStore();
-
 const portfolios = ref([
   {
     id: 1,
@@ -102,7 +98,7 @@ const socials = ref([
   },
 ]);
 
-const sidebar = ref(true);
+const sidebar = ref<boolean>(true);
 
 function sidebarClose() {
   sidebar.value = !sidebar.value;
