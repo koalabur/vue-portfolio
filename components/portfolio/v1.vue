@@ -31,7 +31,13 @@
             <!-- Yea... I just looped in a loop. I'll do it again. -->
             <span
               class="portfolio__row-item-tools-inner"
-              :class="tool === 'active' ? 'portfolio__row-item-tools-inner--active' : tool === 'coming soon' ? 'portfolio__row-item-tools-inner--comingsoon' : null"
+              :class="
+                tool === 'active'
+                  ? 'portfolio__row-item-tools-inner--active'
+                  : tool === 'coming soon'
+                  ? 'portfolio__row-item-tools-inner--comingsoon'
+                  : null
+              "
               v-for="tool in item.tools"
               >{{ tool }}</span
             >
@@ -64,6 +70,8 @@
 <script lang="ts" setup>
 //* Import pinia store (global state)
 import { useCoreStore } from "@/stores/coreStore";
+// vueuse.org
+import { useIntersectionObserver } from "@vueuse/core";
 
 // Init vars before everything else
 let portfolioData: any = ref();
@@ -74,9 +82,17 @@ const portfolio = ref(null);
 // Assign const to global state
 const coreStore = useCoreStore();
 
-onMounted(() => {
-  useIntersectionObs(portfolio, coreStore.setSection, 0.6);
-});
+// vueuse intersectionObserver
+useIntersectionObserver(
+  portfolio,
+  ([{ isIntersecting }]) => {
+    coreStore.setSection(isIntersecting ? portfolio.value.id : "");
+    console.log(coreStore.getSection);
+  },
+  {
+    threshold: 0.6,
+  }
+);
 
 async function initApi() {
   // API data from firebase

@@ -156,6 +156,8 @@
 <script lang="ts" setup>
 //* Import pinia store (global state)
 import { useCoreStore } from "@/stores/coreStore";
+// vueuse.org
+import { useIntersectionObserver } from "@vueuse/core";
 
 //* Import and register gsap
 import { gsap } from "gsap";
@@ -182,12 +184,19 @@ const scrollTrigD = ref(null);
 // Assign const to global state
 const coreStore = useCoreStore();
 
+// vueuse intersectionObserver
+useIntersectionObserver(
+  about,
+  ([{ isIntersecting }]) => {
+    coreStore.setSection(isIntersecting ? about.value.id : "");
+    console.log(coreStore.getSection);
+  },
+  {
+    threshold: 0,
+  }
+);
+
 onMounted(() => {
-  useIntersectionObs(about, coreStore.setSection, 0);
-
-  // Timeout so gsap will wait for component to completely render
-  // then apply effects
-
   // Put refs in array then loop through all and add the same effects
   const scrollTrig = [
     scrollTrigA.value,

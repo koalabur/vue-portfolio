@@ -45,7 +45,7 @@ export default defineNuxtConfig({
     // Public keys that are exposed to the client
     public: {},
   },
-  modules: ["@nuxt/image-edge", "@pinia/nuxt"],
+  modules: ["@nuxt/image-edge", "@pinia/nuxt", "@vueuse/nuxt"],
 
   // @ts-ignore
   image: {
