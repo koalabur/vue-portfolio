@@ -154,12 +154,12 @@
   </section>
 </template>
 <script lang="ts" setup>
-//* Import pinia store (global state)
+// Import pinia store (global state)
 import { useCoreStore } from "@/stores/coreStore";
 // vueuse.org
 import { useIntersectionObserver } from "@vueuse/core";
 
-//* Import and register gsap
+// Import and register gsap
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 if (process.client) {
@@ -167,19 +167,35 @@ if (process.client) {
 }
 
 // Init vars before everything else
-let aboutData: any = ref();
-let codesData: any = ref();
-let conceptsData: any = ref();
-let othersData: any = ref();
+interface AboutData {
+  desc: string;
+  icon: {
+    alt: string;
+    height: string;
+    width: string;
+    img: string;
+  };
+  title: string;
+  id: number;
+}
+let aboutData = ref<Array<AboutData>>([]);
+
+interface SimpleData {
+  id: string;
+  items: Array<string>;
+}
+let codesData = ref<Array<SimpleData>>([]);
+let conceptsData = ref<Array<SimpleData>>([]);
+let othersData = ref<Array<SimpleData>>([]);
 
 //// Create refs for elements
 // Intersection Obs ref
-const about = ref(null);
+const about = ref<HTMLElement | null>(null);
 // Gsap refs
-const scrollTrigA = ref(null);
-const scrollTrigB = ref(null);
-const scrollTrigC = ref(null);
-const scrollTrigD = ref(null);
+const scrollTrigA = ref<HTMLDivElement | null>(null);
+const scrollTrigB = ref<HTMLDivElement | null>(null);
+const scrollTrigC = ref<HTMLDivElement | null>(null);
+const scrollTrigD = ref<HTMLDivElement | null>(null);
 
 // Assign const to global state
 const coreStore = useCoreStore();
@@ -188,8 +204,7 @@ const coreStore = useCoreStore();
 useIntersectionObserver(
   about,
   ([{ isIntersecting }]) => {
-    coreStore.setSection(isIntersecting ? about.value.id : "");
-    console.log(coreStore.getSection);
+    coreStore.setSection(isIntersecting ? about.value?.id : "");
   },
   {
     threshold: 0,
@@ -210,17 +225,13 @@ onMounted(() => {
     gsap.from(
       [
         // Title
-        //@ts-ignore
-        section.childNodes[0].childNodes[0].childNodes[0],
+        section?.childNodes[0].childNodes[0].childNodes[0],
         // Line
-        //@ts-ignore
-        section.childNodes[0].childNodes[0].childNodes[1].childNodes[0],
+        section?.childNodes[0].childNodes[0].childNodes[1].childNodes[0],
         // Dot
-        //@ts-ignore
-        section.childNodes[0].childNodes[0].childNodes[1].childNodes[1],
+        section?.childNodes[0].childNodes[0].childNodes[1].childNodes[1],
         // Right Column
-        //@ts-ignore
-        section.childNodes[1],
+        section?.childNodes[1],
       ],
       {
         opacity: 0,
@@ -233,8 +244,6 @@ onMounted(() => {
           pin: true,
           start: "top top",
           end: "bottom",
-          //@ts-ignore
-          pinSpacer: true,
         },
       }
     );
@@ -252,14 +261,22 @@ async function initApi() {
   });
 
   // Assign to const ref.value
+  // @ts-ignore
   aboutData.value = rawAboutData;
 
   // ************************* //
   // GET ALL SKILLS DATA
-  const rawSkillsData = await $fetch("/api/query?col=skills");
+  interface skillsData {
+    // .find has a fit with strings
+    find: any;
+    id: string;
+    items: Array<string>;
+  }
+
+  // @ts-ignore . Research shows this is a TS error not code error. I could be wrong :(
+  const rawSkillsData: skillsData = await $fetch("/api/query?col=skills");
 
   // Filter to REACT-CODE
-  // @ts-ignore
   const filteredCodesData = rawSkillsData.find(
     (item: { id: string }) => item.id === "react-code"
   );
@@ -269,20 +286,22 @@ async function initApi() {
 
   // Filter to REACT-CONCEPTS
   // @ts-ignore
-  const filteredConceptsData = rawSkillsData.find(
+  const filteredConceptsData: skillsData = rawSkillsData.find(
     (item: { id: string }) => item.id === "react-concepts"
   );
 
   // Assign to const ref.value
+  // @ts-ignore . error on this but not REACT-CODE? It's the same f'ing thing!
   conceptsData.value = filteredConceptsData;
 
   // Filter to REACT-OTHERS
   // @ts-ignore
-  const filteredOthersData = rawSkillsData.find(
+  const filteredOthersData: skillsData = rawSkillsData.find(
     (item: { id: string }) => item.id === "react-other"
   );
 
   // Assign to const ref.value
+  // @ts-ignore . error on this but not REACT-CODE? It's the same f'ing thing!
   othersData.value = filteredOthersData;
 }
 
