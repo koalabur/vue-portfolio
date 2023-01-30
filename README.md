@@ -8,7 +8,7 @@
 - \<Transition\>: Animations for mounting and unmounting components
 - GSAP: Scroll triggered animations
 - Pinia: Create and share global state between components
-- Intersction Observer API: Highlight nav links when section is in view \
+- vueuse Intersection Observer: Highlight nav links when section is in view \
 -- Usage: sending section ref to global state when it's in viewport then highlighting nav link of said section
 
 ## Resources for Cloud Firestore Configuration:
