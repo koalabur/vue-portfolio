@@ -11,12 +11,12 @@
 
 <script setup>
 // Components
-import NavBar from "./components/nav/v1";
-import IntroSection from "./components/intro/v1";
-import AboutSection from "./components/about/v2";
-import PortfolioSection from "./components/portfolio/v1";
-import SidebarSection from "./components/sidebar/v2";
-import FooterSection from "./components/footer/v1";
+import NavBar from "./components/nav/MainNav";
+import IntroSection from "./components/intro/BigKoalaIntro";
+import AboutSection from "./components/about/GSAPAbout";
+import PortfolioSection from "./components/portfolio/GSAPPortfolio";
+import SidebarSection from "./components/sidebar/FullHeightSidebar";
+import FooterSection from "./components/footer/BasicFooter";
 </script>
 
 <style lang="sass">
