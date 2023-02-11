@@ -4,7 +4,7 @@ export default defineNuxtConfig({
     head: {
       charset: "utf-8",
       viewport: "width=device-width, initial-scale=1",
-      title: "Cameron R Design",
+      title: "Cameron R Design portfolio",
       meta: [
         {
           name: "description",
@@ -12,7 +12,7 @@ export default defineNuxtConfig({
         },
         {
           property: "og:title",
-          content: "Cameron R Design",
+          content: "Cameron R Design portfolio",
         },
         {
           property: "og:description",
