@@ -8,15 +8,15 @@ export default defineNuxtConfig({
       meta: [
         {
           name: "description",
-          content: "Vue/ Nuxt.js portfolio for Cameron Roberts",
+          content: "Vue/ Nuxt.js Portfolio created by Cameron",
         },
         {
           property: "og:title",
-          content: "Vue/ Nuxt.js portfolio for Cameron Roberts",
+          content: "Cameron R Design",
         },
         {
           property: "og:description",
-          content: "Vue/ Nuxt.js portfolio for Cameron Roberts",
+          content: "Vue/ Nuxt.js Portfolio created by Cameron",
         },
         { property: "og:type", content: "website" },
         { property: "og:url", content: "https://vue.cameronrdesign.com" },
