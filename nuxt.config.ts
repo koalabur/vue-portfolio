@@ -5,7 +5,28 @@ export default defineNuxtConfig({
       charset: "utf-8",
       viewport: "width=device-width, initial-scale=1",
       title: "Cameron R Design",
-      meta: [{ name: "description", content: "Vue/ Nuxt.js portfolio" }],
+      meta: [
+        {
+          name: "description",
+          content: "Vue/ Nuxt.js portfolio for Cameron Roberts",
+        },
+        {
+          property: "og:title",
+          content: "Vue/ Nuxt.js portfolio for Cameron Roberts",
+        },
+        {
+          property: "og:description",
+          content: "Vue/ Nuxt.js portfolio for Cameron Roberts",
+        },
+        { property: "og:type", content: "website" },
+        { property: "og:url", content: "https://vue.cameronrdesign.com" },
+        { property: "og:locale", content: "en_US" },
+        {
+          property: "og:image",
+          content:
+            "https://res.cloudinary.com/dg6sd9yyx/image/upload/v1676136904/meta/koalavue-ogimage_xjiqwx.jpg",
+        },
+      ],
       link: [
         { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
         {
