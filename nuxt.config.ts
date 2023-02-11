@@ -4,19 +4,19 @@ export default defineNuxtConfig({
     head: {
       charset: "utf-8",
       viewport: "width=device-width, initial-scale=1",
-      title: "Cameron R Design",
+      title: "Cameron R Design Portfolio",
       meta: [
         {
           name: "description",
-          content: "Vue/ Nuxt.js portfolio for Cameron Roberts",
+          content: "Vue/ Nuxt.js Portfolio created by Cameron",
         },
         {
           property: "og:title",
-          content: "Vue/ Nuxt.js portfolio for Cameron Roberts",
+          content: "Cameron R Design Portfolio",
         },
         {
           property: "og:description",
-          content: "Vue/ Nuxt.js portfolio for Cameron Roberts",
+          content: "Vue/ Nuxt.js Portfolio created by Cameron",
         },
         { property: "og:type", content: "website" },
         { property: "og:url", content: "https://vue.cameronrdesign.com" },
