@@ -1,7 +1,8 @@
 ## What's Going On?
+
 - SSR: Server Side Rendering for SEO
 - Dynamic Scaling SASS: CSS scales from a min to a max to look proportionate across all devices
-- Firebase - Cloud Firestore: Non SQL Database Hosting large majority of the content seen on site
+- Contentful: Headless CMS managing 99% of the site
 - Cloudinary: Hosting all of the jpegs and pngs, dynamic resizing, auto optimization
 - Base64 Encoded SVGs: Used to import svgs as img tags for better cross browser compatibility
 - API Ninja: API for random facts
@@ -9,7 +10,7 @@
 - GSAP: Scroll triggered animations
 - Pinia: Create and share global state between components
 - vueuse Intersection Observer: Highlight nav links when section is in view \
--- Usage: sending section ref to global state when it's in viewport then highlighting nav link of said section
+  -- Usage: sending section ref to global state when it's in viewport then highlighting nav link of said section
 
 ## Resources for Cloud Firestore Configuration:
 

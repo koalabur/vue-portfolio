@@ -2,7 +2,7 @@
   <section id="portfolio" class="portfolio" ref="portfolio">
     <h1 class="portfolio__title">&lt portfolio /&gt</h1>
     <p class="portfolio__index">
-      {{ currentSlide + 1 }} / {{ portfolioData.length }}
+      {{ currentSlide + 1 }} / {{ portfolioData?.length }}
     </p>
     <div class="portfolio__row">
       <div class="portfolio__row-carousel">
@@ -19,27 +19,33 @@
           :key="item.id"
         >
           <nuxt-img
-            provider="cloudinary"
-            :src="item.img.src"
-            :alt="item.img.alt"
+            provider="contentful"
+            :src="item.image.url"
+            :alt="item.title"
             width="800"
             height="600"
             class="portfolio__row-item-img"
           />
-          <p class="portfolio__row-item-title">{{ item.title }}</p>
+          <p class="portfolio__row-item-title">
+            {{ item.title.toLowerCase() }}
+          </p>
           <p class="portfolio__row-item-tools">
             <!-- Yea... I just looped in a loop. I'll do it again. -->
             <span
               class="portfolio__row-item-tools-inner"
               :class="
-                tool === 'active'
+                tool.toLowerCase() === 'active'
                   ? 'portfolio__row-item-tools-inner--active'
-                  : tool === 'coming soon'
+                  : tool.toLowerCase() === 'coming soon'
                   ? 'portfolio__row-item-tools-inner--comingsoon'
+                  : tool.toLowerCase() === 'wordpress'
+                  ? 'portfolio__row-item-tools-inner--wordpress'
+                  : tool.toLowerCase() === 'e-comm'
+                  ? 'portfolio__row-item-tools-inner--ecomm'
                   : null
               "
               v-for="tool in item.tools"
-              >{{ tool }}</span
+              >{{ tool.toLowerCase() }}</span
             >
           </p>
         </a>
@@ -73,18 +79,44 @@ import { useCoreStore } from "@/stores/coreStore";
 // vueuse.org
 import { useIntersectionObserver } from "@vueuse/core";
 
-// Init vars before everything else
-interface PortfolioData {
+// Contentful
+interface DataFromContentful {
   id: number;
-  img: {
-    alt: string;
-    src: string;
-  };
   title: string;
   tools: Array<string>;
   url: string;
+  image: {
+    url: string;
+  };
 }
-let portfolioData = ref<Array<PortfolioData>>([]);
+/// Query
+const portfolioQuery = `
+  query portfolioCollectionQuery {
+    portfolioCollection {
+      items {
+        id,
+        title,
+        url,
+        image {
+          url
+        },
+        tools
+      }
+    }
+  }
+`;
+/// use conposable
+const rawData = await useContentful(portfolioQuery);
+/// sort rawData
+const portfolioContent = rawData.data.portfolioCollection.items.sort(function (
+  a: { id: number },
+  b: { id: number }
+) {
+  return a.id - b.id;
+});
+/// assign to ref()
+const portfolioData = ref<Array<DataFromContentful>>();
+portfolioData.value = portfolioContent;
 
 // Ref the element
 const portfolio = ref<HTMLElement | null>(null);
@@ -103,32 +135,12 @@ useIntersectionObserver(
   }
 );
 
-async function initApi() {
-  // API data from firebase
-  const rawPortfolioData = await $fetch("/api/query?col=portfolio");
-
-  // sort id descending order
-  // @ts-ignore
-  rawPortfolioData.sort(function (a: { id: number }, b: { id: number }) {
-    return a.id - b.id;
-  });
-
-  // Assign to ref.value
-  // @ts-ignore
-  portfolioData.value = rawPortfolioData;
-}
-
-// Everything below this will wait until the api returns
-// can't do anything without data regardless
-// TODO: ERR HANDLING
-await initApi();
-
 // CAROUSEL
 // Current slide
 let currentSlide = ref<number>(0);
 
 // Length of imported data array
-const length: number = portfolioData.value.length;
+const length: number = portfolioData.value!.length;
 
 function nextSlide() {
   // if current slide is equal to the length of the array then reset to 0
@@ -264,9 +276,21 @@ function prevSlide() {
             background: $active-bg
             color: $active-fc
 
+
           &--comingsoon
             background: $comingsoon-bg
             color: $comingsoon-fc
+
+
+          &--wordpress
+            background: $wordpress-blue
+            color: $active-fc
+
+
+          &--ecomm
+            background: $ecomm-red
+            color: $ecomm-yellow
+
 
     &-link
       outline: 5px solid transparent
