@@ -64,14 +64,16 @@ export default defineNuxtConfig({
     // Private keys that are exposed to the server
     API_NINJA_KEY: process.env.API_NINJA_KEY,
     // Public keys that are exposed to the client
-    public: {},
+    public: {
+      CONTENTFUL_SPACE: process.env.CONTENTFUL_SPACE,
+      CONTENTFUL_CDA: process.env.CONTENTFUL_CDA,
+    },
   },
   modules: ["@nuxt/image-edge", "@pinia/nuxt", "@vueuse/nuxt"],
-
-  // @ts-ignore
   image: {
     cloudinary: {
       baseURL: "https://res.cloudinary.com/dg6sd9yyx/image/upload/v1671834530",
     },
+    contentful: {},
   },
 });

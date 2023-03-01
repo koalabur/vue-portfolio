@@ -16,9 +16,24 @@
 //* Import pinia store (global state)
 import { useCoreStore } from "@/stores/coreStore";
 
-const nav = ref(["about", "portfolio"]);
-
+// expose state
 const coreStore = useCoreStore();
+
+// Contentful
+/// Nav
+const nav = ref<Array<String>>();
+/// Query
+const navQuery = `
+  query navEntryQuery {
+    nav(id: "3JoFznXXx6b4rrvIx9UKqk") {
+      link
+    }
+  }
+`;
+/// use composable
+const navData = await useContentful(navQuery);
+/// assign to ref
+nav.value = navData.data.nav.link;
 </script>
 <style lang="sass" scoped>
 .siteNav

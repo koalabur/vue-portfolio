@@ -2,15 +2,17 @@
   <section id="about" class="about" ref="about">
     <div class="about__offset"></div>
     <div>
-      <!-- aboutData -->
+      <!-- whoAmI -->
       <div class="about__row" ref="scrollTrigA">
         <div class="about__col">
           <div class="about__col-row">
             <div class="about__col-title">
               <h1 class="about__col-title-text">
                 &lt;h1&#62;
-                <span class="about__col-title-text-indent"> who am i? </span>
-                &lt;h1/&#62;
+                <span class="about__col-title-text-indent">
+                  {{ whoAmI?.title }}
+                </span>
+                &lt;/h1&#62;
               </h1>
             </div>
             <div class="about__col-divider">
@@ -21,23 +23,22 @@
         </div>
         <div class="about__col">
           <h2 class="about__col-subtitle">
-            my name is <strong><u>cameron</u></strong
-            >, i am a <strong><u>front end dev</u></strong> who likes...
+            {{ whoAmI?.subtitle }}
           </h2>
           <div class="about__col-highlights">
             <div
               class="about__col-highlights-item"
-              v-for="about in aboutData"
-              :key="about.id"
+              v-for="item in whoAmI?.contentInJsonFormat"
+              :key="item.id"
             >
               <nuxt-img
                 provider="cloudinary"
-                :src="about.icon.img"
-                :alt="about.icon.alt"
-                :width="about.icon.width"
-                :height="about.icon.height"
+                :src="item.base64img"
+                :alt="item.title"
+                width="101"
+                height="101"
                 :class="
-                  about.id !== 4
+                  item.id !== 4
                     ? 'about__col-highlights-item-img'
                     : 'about__col-highlights-item-img about__col-highlights-item-img--rotate'
                 "
@@ -45,17 +46,17 @@
                 decoding="async"
               />
               <h3 class="about__col-highlights-item-title">
-                {{ about.title }}
+                {{ item.title }}
               </h3>
               <p class="about__col-highlights-item-subtitle">
-                {{ about.desc }}
+                {{ item.subtitle }}
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- reactCode -->
+      <!-- codeyThings -->
       <div class="about__row" ref="scrollTrigB">
         <div class="about__col">
           <div class="about__col-row">
@@ -63,9 +64,9 @@
               <h1 class="about__col-title-text">
                 &lt;h1&#62;
                 <span class="about__col-title-text-indent">
-                  i know cool codey things like
+                  {{ codeyThings?.title }}
                 </span>
-                &lt;h1/&#62;
+                &lt;/h1&#62;
               </h1>
             </div>
             <div class="about__col-divider">
@@ -77,7 +78,7 @@
         <div class="about__col">
           <div class="about__col-skills">
             <p
-              v-for="(code, index) in codesData.items"
+              v-for="(code, index) in codeyThings?.contentInListFormat"
               class="about__col-skills-item"
               :key="index"
             >
@@ -87,7 +88,7 @@
         </div>
       </div>
 
-      <!-- conceptsData -->
+      <!-- coolConcepts -->
       <div class="about__row" ref="scrollTrigC">
         <div class="about__col">
           <div class="about__col-row">
@@ -95,9 +96,9 @@
               <h1 class="about__col-title-text">
                 &lt;h1&#62;
                 <span class="about__col-title-text-indent">
-                  i know cool concepts and libraries like
+                  {{ coolConcepts?.title }}
                 </span>
-                &lt;h1/&#62;
+                &lt;/h1&#62;
               </h1>
             </div>
             <div class="about__col-divider">
@@ -109,7 +110,7 @@
         <div class="about__col">
           <div class="about__col-skills">
             <p
-              v-for="(concept, index) in conceptsData.items"
+              v-for="(concept, index) in coolConcepts?.contentInListFormat"
               class="about__col-skills-item"
               :key="index"
             >
@@ -119,7 +120,7 @@
         </div>
       </div>
 
-      <!-- othersData -->
+      <!-- coolThings -->
       <div class="about__row" ref="scrollTrigD">
         <div class="about__col">
           <div class="about__col-row">
@@ -127,9 +128,9 @@
               <h1 class="about__col-title-text">
                 &lt;h1&#62;
                 <span class="about__col-title-text-indent">
-                  i know other cool things like
+                  {{ coolThings?.title }}
                 </span>
-                &lt;h1/&#62;
+                &lt;/h1&#62;
               </h1>
             </div>
             <div class="about__col-divider">
@@ -141,11 +142,11 @@
         <div class="about__col">
           <div class="about__col-skills">
             <p
-              v-for="(other, index) in othersData.items"
+              v-for="(thing, index) in coolThings?.contentInListFormat"
               :key="index"
               class="about__col-skills-item"
             >
-              {{ other }}
+              {{ thing }}
             </p>
           </div>
         </div>
@@ -166,41 +167,19 @@ if (process.client) {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-// Init vars before everything else
-interface AboutData {
-  desc: string;
-  icon: {
-    alt: string;
-    height: string;
-    width: string;
-    img: string;
-  };
-  title: string;
-  id: number;
-}
-let aboutData = ref<Array<AboutData>>([]);
-
-interface SimpleData {
-  id: string;
-  items: Array<string>;
-}
-let codesData = ref<Array<SimpleData>>([]);
-let conceptsData = ref<Array<SimpleData>>([]);
-let othersData = ref<Array<SimpleData>>([]);
-
-//// Create refs for elements
-// Intersection Obs ref
+// Create refs for elements
+/// Intersection Obs ref
 const about = ref<HTMLElement | null>(null);
-// Gsap refs
+/// Gsap refs
 const scrollTrigA = ref<HTMLDivElement | null>(null);
 const scrollTrigB = ref<HTMLDivElement | null>(null);
 const scrollTrigC = ref<HTMLDivElement | null>(null);
 const scrollTrigD = ref<HTMLDivElement | null>(null);
 
-// Assign const to global state
+/// Assign const to global state
 const coreStore = useCoreStore();
 
-// vueuse intersectionObserver
+/// vueuse intersectionObserver
 useIntersectionObserver(
   about,
   ([{ isIntersecting }]) => {
@@ -250,63 +229,62 @@ onMounted(() => {
   });
 });
 
-async function initApi() {
-  // ABOUT DATA
-  const rawAboutData = await $fetch("/api/query?col=about");
-
-  // sort id descending order
-  // @ts-ignore
-  rawAboutData.sort(function (a: { id: number }, b: { id: number }) {
-    return a.id - b.id;
-  });
-
-  // Assign to const ref.value
-  // @ts-ignore
-  aboutData.value = rawAboutData;
-
-  // ************************* //
-  // GET ALL SKILLS DATA
-  interface skillsData {
-    // .find has a fit with strings
-    find: any;
-    id: string;
-    items: Array<string>;
-  }
-
-  // @ts-ignore . Research shows this is a TS error not code error. I could be wrong :(
-  const rawSkillsData: skillsData = await $fetch("/api/query?col=skills");
-
-  // Filter to REACT-CODE
-  const filteredCodesData = rawSkillsData.find(
-    (item: { id: string }) => item.id === "react-code"
-  );
-
-  // Assign to const ref.value
-  codesData.value = filteredCodesData;
-
-  // Filter to REACT-CONCEPTS
-  // @ts-ignore
-  const filteredConceptsData: skillsData = rawSkillsData.find(
-    (item: { id: string }) => item.id === "react-concepts"
-  );
-
-  // Assign to const ref.value
-  // @ts-ignore . error on this but not REACT-CODE? It's the same f'ing thing!
-  conceptsData.value = filteredConceptsData;
-
-  // Filter to REACT-OTHERS
-  // @ts-ignore
-  const filteredOthersData: skillsData = rawSkillsData.find(
-    (item: { id: string }) => item.id === "react-other"
-  );
-
-  // Assign to const ref.value
-  // @ts-ignore . error on this but not REACT-CODE? It's the same f'ing thing!
-  othersData.value = filteredOthersData;
+// Contentful
+interface DataFromContentful {
+  id: number;
+  title: string;
+  subtitle: string;
+  contentInListFormat: Array<string> | null;
+  contentInJsonFormat: {
+    // yes I know I shouldn't use ANY but wtf TS screams at me -_-
+    id: number | any;
+    title: string;
+    subtitle: string;
+    base64img: string;
+  } | null;
+  icon: {
+    alt: string;
+    height: string;
+    width: string;
+    img: string;
+  };
 }
-
-// TODO: ERR HANDLING
-await initApi();
+/// Query
+const GSAPAboutQuery = `
+  query aboutCollectionQuery {
+    aboutCollection {
+      items {
+        id,
+        title,
+        subtitle,
+        contentInJsonFormat,
+        contentInListFormat
+      }
+    }
+  }
+`;
+/// use conposable
+const GSAPAboutContent = await useContentful(GSAPAboutQuery);
+/// whoAmI
+const whoAmI = ref<DataFromContentful>();
+whoAmI.value = GSAPAboutContent.data.aboutCollection.items.find(
+  ({ id }: { id: number }) => id === 1
+);
+/// codeyThings
+const codeyThings = ref<DataFromContentful>();
+codeyThings.value = GSAPAboutContent.data.aboutCollection.items.find(
+  ({ id }: { id: number }) => id === 2
+);
+/// coolConcepts
+const coolConcepts = ref<DataFromContentful>();
+coolConcepts.value = GSAPAboutContent.data.aboutCollection.items.find(
+  ({ id }: { id: number }) => id === 3
+);
+/// coolThings
+const coolThings = ref<DataFromContentful>();
+coolThings.value = GSAPAboutContent.data.aboutCollection.items.find(
+  ({ id }: { id: number }) => id === 4
+);
 </script>
 <style lang="sass" scoped>
 .about
