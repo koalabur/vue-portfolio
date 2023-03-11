@@ -135,7 +135,7 @@ function activeFilterHandler(filter: string) {
     const filteredPortfolio = portfolioData.value?.filter(
       (item) => item.tools.indexOf(filter) === -1
     );
-    //// enable anchors (controlled by sass)
+    //// disable anchors (controlled by sass)
     filteredPortfolio?.forEach((item) => {
       item.display = false;
     });
