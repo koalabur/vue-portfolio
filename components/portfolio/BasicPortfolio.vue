@@ -4,7 +4,6 @@
     <div class="portfolio__filters">
       <button
         v-for="filter in filters"
-        :key="filter"
         :class="isFilterActiveClass(filter)"
         @click="() => activeFilterHandler(filter)"
       >
@@ -126,7 +125,7 @@ const filters = ref<Array<String>>([...new Set(dupeFilters.flat().sort())]);
 // Active Filters
 const activeFilter = ref<Array<String>>([]);
 /// change filters
-function activeFilterHandler(filter: string | any) {
+function activeFilterHandler(filter: string) {
   if (!activeFilter.value.find((element) => element === filter.toLowerCase())) {
     //// push to activeFilter const for filter btns
     activeFilter.value.push(filter.toLowerCase());
@@ -135,10 +134,10 @@ function activeFilterHandler(filter: string | any) {
     const filteredPortfolio = portfolioData.value?.filter(
       (item) => item.tools.indexOf(filter) === -1
     );
+    //// disable anchors (controlled by sass)
     filteredPortfolio?.forEach((item) => {
       item.display = false;
     });
-    console.log(filteredPortfolio);
   } else {
     //// remove deactivated filter from activeFilter array
     const removeSingleFilter = activeFilter.value.filter(
@@ -150,20 +149,20 @@ function activeFilterHandler(filter: string | any) {
     const filteredPortfolio = portfolioData.value?.filter(
       (item) => item.tools.indexOf(filter) === -1
     );
+    //// enable anchors (controlled by sass)
     filteredPortfolio?.forEach((item) => {
       item.display = true;
     });
-    console.log(filteredPortfolio);
   }
 }
 /// change symbol next to filter text
-function isFilterActiveIcon(filter: string | any) {
+function isFilterActiveIcon(filter: string) {
   return activeFilter.value.find((element) => element === filter.toLowerCase())
     ? "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIj48cGF0aCBkPSJNNDQ4IDcxLjljLTE3LjMtMTMuNC00MS41LTkuMy01NC4xIDkuMUwyMTQgMzQ0LjJsLTk5LjEtMTA3LjNjLTE0LjYtMTYuNi0zOS4xLTE3LjQtNTQuNy0xLjgtMTUuNiAxNS41LTE2LjQgNDEuNi0xLjcgNTguMSAwIDAgMTIwLjQgMTMzLjYgMTM3LjcgMTQ3IDE3LjMgMTMuNCA0MS41IDkuMyA1NC4xLTkuMWwyMDYuMy0zMDEuN2MxMi42LTE4LjUgOC43LTQ0LjItOC42LTU3LjV6IiBmaWxsPSIjMzEyNjViIiBjbGFzcz0iZmlsbC0wMDAwMDAiPjwvcGF0aD48L3N2Zz4="
     : "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTEzLjcgMTkuNTUgNS44OC01Ljg5IDMuMzUgMy4zNmEzLjU3IDMuNTcgMCAwIDEgMCA1LjA1bC0uODMuODNhMy41NyAzLjU3IDAgMCAxLTUuMDUgMHpNMjIuOTIgMS45bC0uODMtLjgzYTMuNTcgMy41NyAwIDAgMC01LjA1IDBMMTIgNi4xMiA2Ljk1IDEuMDdhMy41NyAzLjU3IDAgMCAwLTUuMDUgMGwtLjgzLjgzYTMuNTcgMy41NyAwIDAgMCAwIDUuMDVMNi4xMiAxMmwtNS4wNSA1LjA1YTMuNTcgMy41NyAwIDAgMCAwIDUuMDVsLjgzLjgzYTMuNTcgMy41NyAwIDAgMCA1LjA1IDBMMTIgMTcuODhsMy42OC0zLjY4IDIuMi0yLjIgNS4wNS01LjA1YTMuNTcgMy41NyAwIDAgMCAwLTUuMDV6IiBmaWxsPSIjMzEyNjViIiBjbGFzcz0iZmlsbC0wMDAwMDAiPjwvcGF0aD48L3N2Zz4=";
 }
 /// change class of filter button
-function isFilterActiveClass(filter: string | any) {
+function isFilterActiveClass(filter: string) {
   return activeFilter.value.find((element) => element === filter.toLowerCase())
     ? "portfolio__filters-item portfolio__filters-item--active"
     : "portfolio__filters-item";
@@ -241,25 +240,31 @@ useIntersectionObserver(
     justify-content: center
 
     &-item
-      opacity: 0
+      opacity: .5
       transition: 0.25s ease-in-out
       grid-area: 1 / 1 / 2 / 2
-      transform: translateY(-20px)
-      z-index: -1
+      transform: translateY(-10px)
+      z-index: 0
       max-width: #{fluid(135px, 325px)}
-      background: $faded-purple
       padding: #{fluid(5px, 10px)}
       border-radius: 12px
+      cursor: not-allowed
+      background: rgba(0,0,0,.5)
+      pointer-events: none
 
-      &:hover
-        box-shadow: 0px 0px 14px $light-purple
-        transform: scale(1.15)
-        z-index: 2
 
       &--active
         transform: translateY(0px)
         opacity: 1
         z-index: 1
+        cursor: pointer
+        background: $faded-purple
+        pointer-events: all
+
+        &:hover
+          box-shadow: 0px 0px 14px $light-purple
+          transform: scale(1.15)
+          z-index: 2
 
       &-img
         margin-bottom: 1rem
