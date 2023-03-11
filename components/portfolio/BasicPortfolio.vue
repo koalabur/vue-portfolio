@@ -181,7 +181,7 @@ useIntersectionObserver(
     coreStore.setSection(isIntersecting ? portfolio.value?.id : "");
   },
   {
-    threshold: 0.6,
+    threshold: 0.7,
   }
 );
 </script>
