@@ -181,7 +181,7 @@ useIntersectionObserver(
     coreStore.setSection(isIntersecting ? portfolio.value?.id : "");
   },
   {
-    threshold: 0.7,
+    threshold: process.client ? (window.innerWidth <= 768 ? 0.35 : 0.55) : 0.55,
   }
 );
 </script>
@@ -322,7 +322,6 @@ useIntersectionObserver(
 
   &__title
     font-family: $main-font
-    // font-size: 2.2rem
     font-size: #{fluid(26px, 38px)}
     font-weight: 600
     background: -webkit-linear-gradient(left, #3700ff 0%, #b629f2 45%)
