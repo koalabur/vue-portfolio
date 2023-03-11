@@ -14,7 +14,7 @@
 import NavBar from "./components/nav/MainNav";
 import IntroSection from "./components/intro/BigKoalaIntro";
 import AboutSection from "./components/about/GSAPAbout";
-import PortfolioSection from "./components/portfolio/GSAPPortfolio";
+import PortfolioSection from "./components/portfolio/BasicPortfolio";
 import SidebarSection from "./components/sidebar/FullHeightSidebar";
 import FooterSection from "./components/footer/BasicFooter";
 </script>
