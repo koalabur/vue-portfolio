@@ -4,7 +4,6 @@
     <div class="portfolio__filters">
       <button
         v-for="filter in filters"
-        :key="filter"
         :class="isFilterActiveClass(filter)"
         @click="() => activeFilterHandler(filter)"
       >
