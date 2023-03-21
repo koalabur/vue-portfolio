@@ -55,6 +55,8 @@
                 ? 'portfolio__row-item-tools-inner--wordpress'
                 : tool.toLowerCase() === 'e-comm'
                 ? 'portfolio__row-item-tools-inner--ecomm'
+                : tool.toLowerCase() === 'vue/nuxt'
+                ? 'portfolio__row-item-tools-inner--vuenuxt'
                 : null
             "
             v-for="tool in item.tools"
@@ -297,20 +299,21 @@ useIntersectionObserver(
             background: $active-bg
             color: $active-fc
 
-
           &--comingsoon
             background: $comingsoon-bg
             color: $comingsoon-fc
 
+          &--ecomm
+            background: $ecomm-red
+            color: $ecomm-yellow
+
+          &--vuenuxt
+            background: $vue-blue
+            color: $vue-green
 
           &--wordpress
             background: $wordpress-blue
             color: $active-fc
-
-
-          &--ecomm
-            background: $ecomm-red
-            color: $ecomm-yellow
 
 
     &-link
