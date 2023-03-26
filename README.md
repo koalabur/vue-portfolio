@@ -12,6 +12,7 @@
 
 ![alt text](https://lh3.googleusercontent.com/P-ZUEk2nqRdojQZXEDr72g-2z92yxlwHwdfjYo2A_eu10pr6GjtmnftRKG3JSOcphV8=w2400 "Vercel") [Vercel](https://vercel.com/)
 
+---
 
 ## Resources for Cloud Firestore Configuration:
 
