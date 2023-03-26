@@ -1,6 +1,6 @@
 <template>
-  <section id="portfolio" class="portfolio" ref="portfolio">
-    <h1 class="portfolio__title">&lt portfolio /&gt</h1>
+  <section id="projects" class="portfolio" ref="portfolio">
+    <h1 class="portfolio__title">&lt projects /&gt</h1>
     <div class="portfolio__filters">
       <button
         v-for="filter in filters"
