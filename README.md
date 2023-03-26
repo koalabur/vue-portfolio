@@ -1,16 +1,17 @@
 ## What's Going On?
-
+  
+![alt text](https://lh4.googleusercontent.com/jaP_gX3L1VixTN7uQYN8or2XvOitlyiBVAFhhY9qZqmPM87oj-r3k2LnlH47vh-NvHg=w2400 "Nuxt 3") [Nuxt 3](https://nuxt.com/)
 - SSR: Server Side Rendering for SEO
-- Dynamic Scaling SASS: CSS scales from a min to a max to look proportionate across all devices
-- Contentful: Headless CMS managing 99% of the site
-- Cloudinary: Hosting all of the jpegs and pngs, dynamic resizing, auto optimization
-- Base64 Encoded SVGs: Used to import svgs as img tags for better cross browser compatibility
-- API Ninja: API for random facts
-- \<Transition\>: Animations for mounting and unmounting components
-- GSAP: Scroll triggered animations
-- Pinia: Create and share global state between components
-- vueuse Intersection Observer: Highlight nav links when section is in view \
-  -- Usage: sending section ref to global state when it's in viewport then highlighting nav link of said section
+
+![alt text](https://lh4.googleusercontent.com/9u0FEJj40yjtmaIV8tNL7hdLNDhLnsDYB_QdqBH-SGPXVLjqsxU4-pR74EbrcEeeJLo=w2400 "Pinia") [Pinia](https://pinia.vuejs.org/)
+- VueUse Intersection Observer: Highlight nav links when section is in view by sending ID of section to global state
+
+![alt text](https://lh6.googleusercontent.com/aNQxUtMEztBjZePrAkL7KPWSXJazMGwnxMDXazxDO4BNh-4aw6YwkvtZGm-oR07mih8=w2400 "GSAP") [GSAP](https://greensock.com/)
+
+![alt text](https://lh6.googleusercontent.com/FU5h_Q0As38kMoqvxtWEmzK10JkainV6PdkepauYdChfg4V_vFi4qpqc-hQnAch1PsU=w2400 "Contentful") [Contentful](https://www.contentful.com/)
+
+![alt text](https://lh3.googleusercontent.com/P-ZUEk2nqRdojQZXEDr72g-2z92yxlwHwdfjYo2A_eu10pr6GjtmnftRKG3JSOcphV8=w2400 "Vercel") [Vercel](https://vercel.com/)
+
 
 ## Resources for Cloud Firestore Configuration:
 
