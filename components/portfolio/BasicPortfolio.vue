@@ -57,6 +57,8 @@
                 ? 'portfolio__row-item-tools-inner--ecomm'
                 : tool.toLowerCase() === 'vue/nuxt'
                 ? 'portfolio__row-item-tools-inner--vuenuxt'
+                : tool.toLowerCase() === 'react/next'
+                ? 'portfolio__row-item-tools-inner--reactnext'
                 : null
             "
             v-for="tool in item.tools"
@@ -306,6 +308,10 @@ useIntersectionObserver(
           &--ecomm
             background: $ecomm-red
             color: $ecomm-yellow
+
+          &--reactnext
+            background: $react-grey
+            color: $react-blue
 
           &--vuenuxt
             background: $vue-blue
