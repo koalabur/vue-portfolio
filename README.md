@@ -2,6 +2,7 @@
   
 ![alt text](https://lh4.googleusercontent.com/jaP_gX3L1VixTN7uQYN8or2XvOitlyiBVAFhhY9qZqmPM87oj-r3k2LnlH47vh-NvHg=w2400 "Nuxt 3") [Nuxt 3](https://nuxt.com/)
 - SSR: Server Side Rendering for SEO
+- API calls on the server allowing pages to be statically generated with all of the content necessary
 
 ![alt text](https://lh4.googleusercontent.com/9u0FEJj40yjtmaIV8tNL7hdLNDhLnsDYB_QdqBH-SGPXVLjqsxU4-pR74EbrcEeeJLo=w2400 "Pinia") [Pinia](https://pinia.vuejs.org/)
 - VueUse Intersection Observer: Highlight nav links when section is in view by sending ID of section to global state
