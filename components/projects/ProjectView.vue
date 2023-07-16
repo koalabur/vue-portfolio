@@ -1,8 +1,10 @@
 <template>
   <section id="projects" class="projects" ref="projects">
-    <div v-if="modalContent">
-      <ProjectsModal :content="modalContent" @closeModal="closeModal" />
-    </div>
+    <ProjectsModal
+      v-if="modalContent"
+      :content="modalContent"
+      @closeModal="closeModal"
+    />
     <h1 class="projects__title">&lt projects /&gt</h1>
     <ProjectsFilter :tech-used="unfilteredTech" @filter="filterHandler" />
     <div class="projects__content">

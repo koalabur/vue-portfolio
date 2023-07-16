@@ -11,8 +11,11 @@
 // @ts-ignore
 import RichTextRenderer from "contentful-rich-text-vue-renderer";
 import { h } from "vue";
+// FOR PRODUCTION USE THIS
 import pkg from "@contentful/rich-text-types";
 const { MARKS, BLOCKS } = pkg;
+// FOR DEVELOPMENT USE THIS
+// import { MARKS, BLOCKS } from "@contentful/rich-text-types";
 
 const props = defineProps({
   richText: {

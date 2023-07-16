@@ -98,6 +98,12 @@ $top-spacing: #{fluid(30px, 60px)}
     @include mobile-break
       flex-direction: column
       gap: 0
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      padding-top: 0
+      justify-content: flex-start
 
     &-close
       position: absolute
@@ -111,6 +117,7 @@ $top-spacing: #{fluid(30px, 60px)}
       border-radius: 50%
       padding: 5px
       transition: .2s ease-in-out
+      z-index: 1
 
       &:hover
         background: #CC0000
@@ -120,15 +127,15 @@ $top-spacing: #{fluid(30px, 60px)}
       flex-direction: column
       padding-top: $top-spacing
 
+      @include mobile-break
+        padding: 0
+
       &-hero
         display: flex
         justify-content: center
         margin-bottom: 13px
         padding: 0 #{fluid(0px, 50px)}
         min-height: 400px
-
-        @include mobile-break
-          min-height: 550px
 
         &-img
           object-fit: contain
