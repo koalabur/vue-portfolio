@@ -24,7 +24,7 @@
   </div>
 </template>
 <script setup lang="ts">
-defineEmits(["filter"])
+defineEmits(["filter"]);
 const props = defineProps({
   techUsed: {
     type: Array as () => string[],

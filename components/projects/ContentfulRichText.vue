@@ -11,7 +11,8 @@
 // @ts-ignore
 import RichTextRenderer from "contentful-rich-text-vue-renderer";
 import { h } from "vue";
-import { BLOCKS, MARKS } from "@contentful/rich-text-types";
+import pkg from "@contentful/rich-text-types";
+const { MARKS, BLOCKS } = pkg;
 
 const props = defineProps({
   richText: {
@@ -36,20 +37,20 @@ function renderNodes() {
   };
 }
 </script>
-<style lang="sass" >
+<style lang="sass">
 $std-fs: #{fluid(16px, 25px)}
-.rich > p 
+.rich > p
   font-family: $main-font
   font-size: $std-fs
   color: $font-color
   line-height: 120%
   margin-bottom: 20px
 
-.rich > ul 
+.rich > ul
   margin-bottom: 20px
   padding-left: 20px
 
-  li 
+  li
     font-family: $main-font
     font-size: $std-fs
     color: $font-color

@@ -69,7 +69,7 @@ const projectsQuery = `
 const { data } = await useContentful(projectsQuery);
 const projectData = data.projects.projectsCollection.items;
 
-// Modal
+// Modal/*  */
 const modalContent = ref<Project | null>(null);
 function openModal(modalData: Project) {
   modalContent.value = modalData;
