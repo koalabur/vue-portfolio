@@ -3,20 +3,33 @@
   <main>
     <IntroSection />
     <AboutSection />
-    <PortfolioSection />
+    <ProjectsSection />
   </main>
   <SidebarSection />
   <FooterSection />
 </template>
 
 <script setup>
+import { useCoreStore } from "@/stores/coreStore";
+
 // Components
 import NavBar from "./components/nav/MainNav";
 import IntroSection from "./components/intro/BigKoalaIntro";
 import AboutSection from "./components/about/GSAPAbout";
-import PortfolioSection from "./components/portfolio/BasicPortfolio";
+import ProjectsSection from "./components/projects/ProjectView.vue";
 import SidebarSection from "./components/sidebar/FullHeightSidebar";
 import FooterSection from "./components/footer/BasicFooter";
+
+const coreStore = useCoreStore();
+const overflow = computed(() => {
+  return coreStore.getModalState ? "hidden" : "auto";
+});
+
+useHead({
+  bodyAttrs: {
+    style: () => `overflow: ${overflow.value}`,
+  },
+});
 </script>
 
 <style lang="sass">

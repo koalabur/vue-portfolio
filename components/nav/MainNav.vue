@@ -41,9 +41,11 @@ nav.value = navData.data.nav.link;
   flex-direction: row
   justify-content: center
   gap: 1.5rem
-  margin-top: 3rem
+  margin-top: 1.5rem
   position: fixed
-  width: 100%
+  width: auto
+  margin-left: 50%
+  transform: translateX(-50%)
   z-index: 10
   @include edge-padding
 

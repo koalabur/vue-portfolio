@@ -40,7 +40,7 @@ export default defineNuxtConfig({
         },
         {
           rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;400;600&display=swap",
+          href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;400;600&family=Source+Code+Pro&display=swap",
         },
       ],
     },
@@ -58,6 +58,11 @@ export default defineNuxtConfig({
   },
   build: {
     transpile: ["gsap"],
+  },
+  buildModules: ["@nuxt/typescript-build"],
+  components: {
+    global: true,
+    dirs: ["~/components"],
   },
   // Used to access env variables
   runtimeConfig: {
