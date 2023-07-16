@@ -1,8 +1,23 @@
 {
   // https://nuxt.com/docs/guide/concepts/typescript
-  "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
-    "lib": ["ES2015", "dom"],
-    "target": "ES2015"
-  }
+    "target": "es2020",
+    "module": "esnext",
+    "lib": ["ESNext", "ESNext.AsyncIterable", "DOM"],
+    "esModuleInterop": true,
+    "strict": true,
+    "allowJs": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "types": ["@nuxt/types", "@nuxt/typescript-build", "@types/node"],
+    "paths": {
+      "~/*": ["./*"],
+      "@/*": ["./*"]
+    }
+  },
+  "extends": "./.nuxt/tsconfig.json",
+  "exclude": ["node_modules"]
 }

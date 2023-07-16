@@ -3,22 +3,25 @@ import { defineStore } from "pinia";
 export const useCoreStore = defineStore("core", {
   state: () => ({
     section: "",
-    isSiteReady: false,
+    isModalOpen: false,
   }),
   actions: {
     setSection(section: any) {
       this.section = section;
     },
-    setIsSiteReady() {
-      this.isSiteReady = true;
+    closeModal() {
+      this.isModalOpen = false;
+    },
+    openModal() {
+      this.isModalOpen = true;
     },
   },
   getters: {
     getSection(): string {
       return this.section;
     },
-    getIsSiteReady(): boolean {
-      return this.isSiteReady;
+    getModalState(): boolean {
+      return this.isModalOpen;
     },
   },
 });
