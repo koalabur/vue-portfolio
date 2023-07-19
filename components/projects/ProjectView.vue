@@ -18,7 +18,7 @@
       <WobbleText
         v-else
         class="projects__content-notice"
-        text="Please select a filter to see projects"
+        text="Please select a filter"
       />
     </div>
   </section>
