@@ -39,7 +39,7 @@ const uniqueTech = [...new Set(props.techUsed)];
 const filteredTechUsed = computed(() => {
   return uniqueTech.filter(
     (item) =>
-      item !== "GSAP" && item !== "Contentful" && item !== "Side Project"
+      item !== "GSAP" && item !== "Contentful" && item !== "Side Project" && item !== "Storyblok"
   );
 });
 

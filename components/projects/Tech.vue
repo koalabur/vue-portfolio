@@ -19,6 +19,8 @@ const techStyling = computed(() => {
       return "tech tech--gsap";
     case "React/Next":
       return "tech tech--react";
+    case "Storyblok":
+      return "tech tech--storyblok";
     case "Vue/Nuxt":
       return "tech tech--vue";
     case "WordPress":
@@ -52,6 +54,10 @@ const techStyling = computed(() => {
   &--react
     background: $react-blue
     color: $react-grey
+
+  &--storyblok
+    background: #00b3b0
+    color: #fff
 
   &--vue
     background: $vue-blue
