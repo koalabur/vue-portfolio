@@ -13,6 +13,8 @@ const techStyling = computed(() => {
   switch (props.tech) {
     case "Contentful":
       return "tech tech--contentful";
+    case "D3.js":
+      return "tech tech--d3";
     case "Ecomm":
       return "tech tech--ecomm";
     case "GSAP":
@@ -35,13 +37,17 @@ const techStyling = computed(() => {
   font-family: $main-font
   font-weight: 700
   background: $font-color
-  color: $faded-purple
+  color: $purple
   padding: 6px 12px
   font-size: #{fluid(13px, 19px)}
 
   &--contentful
     background: #67B3FF
     color: #29303A
+
+  &--d3
+    background: #ef7234
+    color: #EDEDED
 
   &--ecomm
     background: #D94A3D
